@@ -29,7 +29,10 @@ export function ChainCard(props: ChainCardProps) {
     }
 
     const data = useReadContracts({
-        contracts: bridgeAddresses.map((address) => ({ abi: SDAI_ABI, address: SDAI_ADDRESS, functionName: "balanceOf", args: [address] })),
+        // @ts-ignore
+        contracts: bridgeAddresses.map(
+            (address) => ({ abi: SDAI_ABI, address: SDAI_ADDRESS, functionName: "balanceOf", args: [address] })
+        ),
     })
     if (! data.isSuccess ) {
         return <Card>

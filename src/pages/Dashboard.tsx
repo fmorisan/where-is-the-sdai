@@ -9,7 +9,7 @@ export default function Dashboard() {
             <PageHeader>
                 <PageHeaderHeading>Overview</PageHeaderHeading>
             </PageHeader>
-            {chains.map((chain) => <ChainCard chain={chain} />)}
+            {chains.map((chain) => <ChainCard chain={chain} key={chain} />)}
         </>
     )
 }
