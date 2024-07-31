@@ -21,11 +21,11 @@ export default defineConfig(({ command }) => {
       },
     },
     build: {
-      "target": "es2020",
+      "target": "esnext",
     },
     optimizeDeps: {
       esbuildOptions: {
-        target: "es2020",
+        target: "esnext",
         define: {
           global: "globalThis",
         },
