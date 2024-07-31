@@ -58,7 +58,7 @@ export function ChainCard(props: ChainCardProps) {
             {legendSpan}
         </CardHeader>
         <CardContent>
-            {formatter.format(Number(formatEther(totalBalance)))} sDAI
+            {formatter.format(totalBalance / BigInt(1e18))} sDAI
         </CardContent>
     </Card>
 }
