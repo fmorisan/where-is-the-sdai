@@ -20,9 +20,12 @@ export default defineConfig(({ command }) => {
         basename: isProd ? basenameProd : '',
       },
     },
+    build: {
+      "target": "es2020",
+    },
     optimizeDeps: {
       esbuildOptions: {
-        target: "esnext",
+        target: "es2020",
         define: {
           global: "globalThis",
         },
