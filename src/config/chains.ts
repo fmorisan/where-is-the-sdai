@@ -31,9 +31,9 @@ export const chains = [
     "rss3",
     "apex",
     "zksync-lite",
-]
+] as const
 
-export const legend: Record<typeof chains[number], string> = {
+export const legend: Partial<Record<typeof chains[number], string>> = {
     "polygon-zk": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
     "astar-zk": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
     "gpt-protocol": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
@@ -78,6 +78,5 @@ export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "karak": ["0x8CE6936845b85412b4Bd7eC9458EBCB8703a326b"],
     "zksync-lite": ["0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"],
     "loopring": ["0x674bdf20A0F284D710BC40872100128e2d66Bd3f"],
-    "aevo": ["0x4082C9647c098a6493fb499EaE63b5ce3259c574"]
-
+    "aevo": ["0x4082C9647c098a6493fb499EaE63b5ce3259c574"],
 }

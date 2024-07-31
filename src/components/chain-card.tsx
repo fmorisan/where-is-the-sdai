@@ -1,11 +1,10 @@
-import { bridges, legend } from "@/config/chains";
+import { bridges, chains, legend } from "@/config/chains";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { useReadContracts } from "wagmi";
-import { formatEther, parseAbi } from "viem";
-import { useImperativeHandle, useState } from "react";
+import { parseAbi } from "viem";
 
 interface ChainCardProps {
-    chain: string;
+    chain: typeof chains[number];
 }
 
 const SDAI_ABI = parseAbi([
@@ -31,7 +30,12 @@ export function ChainCard(props: ChainCardProps) {
     const data = useReadContracts({
         // @ts-ignore
         contracts: bridgeAddresses.map(
-            (address) => ({ abi: SDAI_ABI, address: SDAI_ADDRESS, functionName: "balanceOf", args: [address] })
+            (address) => ({
+                abi: SDAI_ABI,
+                address: SDAI_ADDRESS,
+                functionName: "balanceOf",
+                args: [address]
+            })
         ),
     })
     if (! data.isSuccess ) {
@@ -46,10 +50,9 @@ export function ChainCard(props: ChainCardProps) {
     }
 
     const formatter = Intl.NumberFormat("en-US")
-
     
     const totalBalance = (
-        data.data.reduce((acc, balance) => acc + balance.result!, BigInt(0))
+        data.data.filter(data => !data.error).reduce((acc, balance) => acc + balance.result!, BigInt(0))
     )
 
     return <Card>

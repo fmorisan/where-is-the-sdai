@@ -17,7 +17,7 @@ export const appConfig: AppConfig = {
         url: "https://github.com/fmorisan/where-is-the-sdai",
     },
     author: {
-        name: "fmorisan",
+        name: "fmorisan, with thanks to hayyi2",
         url: "https://github.com/fmorisan/",
     }
 }

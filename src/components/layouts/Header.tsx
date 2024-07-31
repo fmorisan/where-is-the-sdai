@@ -19,6 +19,7 @@ import { ChevronDownIcon, ViewVerticalIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Logo } from "../logo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ModeToggle } from "../mode-toggle";
 
 export function Header() {
     const [open, setOpen] = useState(false)
@@ -165,6 +166,9 @@ export function Header() {
                         {/* <CommandMenu /> */}
                     </div>
                     <nav className="flex items-center space-x-2">
+                        <div className="hidden md:block">
+                            <ModeToggle />
+                        </div>
                         <a
                             href={appConfig.github.url}
                             title={appConfig.github.title}
@@ -181,7 +185,7 @@ export function Header() {
                                 <span className="sr-only">GitHub</span>
                             </div>
                         </a>
-                        <DropdownMenu>
+                        {/*<DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant='ghost'
@@ -203,7 +207,7 @@ export function Header() {
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>Log out</DropdownMenuItem>
                             </DropdownMenuContent>
-                        </DropdownMenu>
+                        </DropdownMenu>*/}
                     </nav>
                 </div>
             </div>
