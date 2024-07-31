@@ -11,13 +11,13 @@ interface AppConfig {
 }
 
 export const appConfig: AppConfig = {
-    name: "Sample App",
+    name: "Where is all the sDAI?",
     github: {
         title: "React Shadcn Starter",
         url: "https://github.com/hayyi2/react-shadcn-starter",
     },
     author: {
-        name: "hayyi",
-        url: "https://github.com/hayyi2/",
+        name: "fmorisan",
+        url: "https://github.com/fmorisan/",
     }
 }

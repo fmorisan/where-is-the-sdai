@@ -20,5 +20,16 @@ export default defineConfig(({ command }) => {
         basename: isProd ? basenameProd : '',
       },
     },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: "esnext",
+        define: {
+          global: "globalThis",
+        },
+        supported: {
+          bigint: true,
+        },
+      },
+    },
   }
 })
