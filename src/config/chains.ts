@@ -1,8 +1,15 @@
 export const chains = [
+    "gnosis-chain",
     "arbitrum",
     "base",
     "optimism",
+    "polygon-zk",
+    "polygon-pos",
+    "karak",
+    "fraxtal",
+    "aevo",
     "blast",
+    "loopring",
     "mantle",
     "zksync-era",
     "linea",
@@ -15,20 +22,15 @@ export const chains = [
     "dydx",
     "taiko",
     "immutable",
-    "polygon-zk",
     "astar-zk",
     "gpt-protocol",
     "wirex-pay",
     "witness",
     "xlayer",
     "bob",
-    "fraxtal",
     "rss3",
     "apex",
-    "karak",
     "zksync-lite",
-    "loopring",
-    "aevo"
 ]
 
 export const legend: Record<typeof chains[number], string> = {
@@ -40,12 +42,16 @@ export const legend: Record<typeof chains[number], string> = {
     "xlayer": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
     "blast": "This chain uses the DSR directly, so the reported sDAI balance is zero",
     "zksync-lite": "This chain seems to be being deprecated in favor of zksync-era",
+    "gnosis-chain": "Ethereum soft-fork where all DAI deposited is converted to sDAI",
+    "polygon-pos": "Ethereum side-chain",
 }
 
 export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "arbitrum": ["0xcEe284F754E854890e311e3280b767F80797180d", "0xa3A7B6F88361F48403514059F1F16C8E78d60EeC"],
     "optimism": ["0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1"],
     "base": ["0x3154Cf16ccdb4C6d922629664174b904d80F2C35"],
+    "gnosis-chain": ["0x4aa42145aa6ebf72e164c9bbc74fbd3788045016"],
+    "polygon-pos": ["0x40ec5b33f54e0e8a33a975908c5ba1c14e5bbbdf", "0xa0c68c638235ee32657e8f720a23cec1bfc77c77"],
     "blast": [],
     "mantle": [],
     "zksync-era": ["0x051F1D88f0aF5763fB888eC4378b4D8B29ea3319"],
