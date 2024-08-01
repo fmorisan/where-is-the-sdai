@@ -47,8 +47,8 @@ export const legend: Partial<Record<typeof chains[number], string>> = {
 } as const
 
 export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
-    "arbitrum": ["0xcEe284F754E854890e311e3280b767F80797180d", "0xa3A7B6F88361F48403514059F1F16C8E78d60EeC"],
-    "optimism": ["0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1"],
+    "arbitrum": ["0xcEe284F754E854890e311e3280b767F80797180d", "0xa3A7B6F88361F48403514059F1F16C8E78d60EeC", "0xA10c7CE4b876998858b1a9E12b10092229539400"],
+    "optimism": ["0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1", "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"],
     "base": ["0x3154Cf16ccdb4C6d922629664174b904d80F2C35"],
     "gnosis-chain": ["0x4aa42145aa6ebf72e164c9bbc74fbd3788045016"],
     "polygon-pos": ["0x40ec5b33f54e0e8a33a975908c5ba1c14e5bbbdf", "0xa0c68c638235ee32657e8f720a23cec1bfc77c77"],
