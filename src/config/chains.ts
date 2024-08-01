@@ -22,11 +22,11 @@ export const chains = [
     "dydx",
     "taiko",
     "immutable",
-    "astar-zk",
+    /*"astar-zk",
     "gpt-protocol",
     "wirex-pay",
     "witness",
-    "xlayer",
+    "xlayer",*/
     "bob",
     "rss3",
     "apex",
@@ -34,12 +34,12 @@ export const chains = [
 ] as const
 
 export const legend: Partial<Record<typeof chains[number], string>> = {
-    "polygon-zk": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
-    "astar-zk": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
+    "polygon-zk": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains. This includes Astar, GPT Protocol, wirex Pay Chain, Witness and XLayer",
+    /*"astar-zk": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
     "gpt-protocol": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
     "wirex-pay": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
     "witness": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
-    "xlayer": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",
+    "xlayer": "This chain is part of the Polygon CDK, and thus, shares TVL with all other CDK chains",*/
     "blast": "This chain uses the DSR directly, so the reported sDAI balance is zero",
     "zksync-lite": "This chain seems to be being deprecated in favor of zksync-era",
     "gnosis-chain": "Ethereum soft-fork where all DAI deposited is converted to sDAI",
@@ -66,11 +66,11 @@ export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "taiko": ["0x996282cA11E5DEb6B5D122CC3B9A1FcAAD4415Ab"],
     "immutable": ["0x5FDCCA53617f4d2b9134B29090C87D01058e27e9"],
     "polygon-zk": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
-    "astar-zk": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
+    /*"astar-zk": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
     "gpt-protocol": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
     "wirex-pay": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
     "witness": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
-    "xlayer": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],
+    "xlayer": ["0x4A27aC91c5cD3768F140ECabDe3FC2B2d92eDb98", "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"],*/
     "bob": ["0x3F6cE1b36e5120BBc59D0cFe8A5aC8b6464ac1f7"],
     "fraxtal": ["0x34C0bD5877A5Ee7099D0f5688D65F4bB9158BDE2"],
     "rss3": ["0x4cbab69108Aa72151EDa5A3c164eA86845f18438"],
