@@ -33,9 +33,6 @@ export function ChainCardWithData(props: ChainCardProps) {
                 <li>
                     {formatter.format(Number(props.chainData.dai / BigInt(1e16)) / 100 )} DAI
                 </li>
-                <li>
-                    {formatter.format(Number(props.chainData.mkr / BigInt(1e16)) / 100 )} MKR
-                </li>
             </ul>
         </CardContent>
     </Card>
