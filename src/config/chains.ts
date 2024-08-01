@@ -75,7 +75,7 @@ export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "fraxtal": ["0x34C0bD5877A5Ee7099D0f5688D65F4bB9158BDE2"],
     "rss3": ["0x4cbab69108Aa72151EDa5A3c164eA86845f18438"],
     "apex": [],
-    "karak": ["0x8CE6936845b85412b4Bd7eC9458EBCB8703a326b"],
+    "karak": ["0x8CE6936845b85412b4Bd7eC9458EBCB8703a326b", "0xBA61F25dd9f2d5f02D01B1C2c1c5F0B14c4B48A3"],
     "zksync-lite": ["0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"],
     "loopring": ["0x674bdf20A0F284D710BC40872100128e2d66Bd3f"],
     "aevo": ["0x4082C9647c098a6493fb499EaE63b5ce3259c574"],
