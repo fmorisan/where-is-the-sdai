@@ -23,7 +23,7 @@ export function ChainCardWithData(props: ChainCardProps) {
     return <Card className="mb-4">
         <CardHeader>
             <CardTitle>{title}</CardTitle>
-            {legendSpan}
+            <CardDescription>{legendSpan}</CardDescription>
         </CardHeader>
         <CardContent>
             <ul>
