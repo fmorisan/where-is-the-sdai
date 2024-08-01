@@ -9,10 +9,6 @@ import { useEffect, useState } from "react";
 
 export default function Dashboard() {
     const {chainData} = useChainData()
-    
-    useEffect(() => {
-             console.log(chainData)
-    }, [chainData])
 
     return (
         <>
