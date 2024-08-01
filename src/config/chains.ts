@@ -44,7 +44,7 @@ export const legend: Partial<Record<typeof chains[number], string>> = {
     "zksync-lite": "This chain seems to be being deprecated in favor of zksync-era",
     "gnosis-chain": "Ethereum soft-fork where all DAI deposited is converted to sDAI",
     "polygon-pos": "Ethereum side-chain",
-}
+} as const
 
 export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "arbitrum": ["0xcEe284F754E854890e311e3280b767F80797180d", "0xa3A7B6F88361F48403514059F1F16C8E78d60EeC"],
@@ -79,4 +79,4 @@ export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "zksync-lite": ["0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"],
     "loopring": ["0x674bdf20A0F284D710BC40872100128e2d66Bd3f"],
     "aevo": ["0x4082C9647c098a6493fb499EaE63b5ce3259c574"],
-}
+} as const
