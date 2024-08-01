@@ -7,19 +7,25 @@ import { useClient } from "wagmi";
 export interface ChainData {
     name: string;
     sdai: bigint;
+    dai: bigint;
+    mkr: bigint;
 }
 
 const SDAI_ABI = parseAbi([
     "function balanceOf(address guy) public view returns (uint256)",
 ])
 const SDAI_ADDRESS: `0x${string}` = "0x83F20F44975D03b1b09e64809B757c47f942BEeA"
+const DAI_ADDRESS: `0x${string}` = "0x6b175474e89094c44da98b954eedeac495271d0f"
+const MKR_ADDRESS: `0x${string}` = "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2"
 
 export default function useChainData() {
     const [chainData, setChainData] = useState<ChainData[]>([])
     const client = useClient()
 
     useEffect(() => {
-        let balanceMap: Record<`0x${string}`, bigint> = {}
+        let sdaiBalanceMap: Record<`0x${string}`, bigint> = {}
+        let daiBalanceMap: Record<`0x${string}`, bigint> = {}
+        let mkrBalanceMap: Record<`0x${string}`, bigint> = {}
         let promises = []
 
         for (let chain of chains) {
@@ -32,10 +38,36 @@ export default function useChainData() {
                         functionName: "balanceOf",
                         args: [bridgeAddress]
                     }).then(data => {
-                        balanceMap[bridgeAddress] = data
+                        sdaiBalanceMap[bridgeAddress] = data
                     }).catch(err => {
                         console.error(err)
-                        balanceMap[bridgeAddress] = BigInt(0)
+                        sdaiBalanceMap[bridgeAddress] = BigInt(0)
+                    })
+                )
+                promises.push(
+                    readContract(client, {
+                        abi: SDAI_ABI,
+                        address: DAI_ADDRESS,
+                        functionName: "balanceOf",
+                        args: [bridgeAddress]
+                    }).then(data => {
+                        daiBalanceMap[bridgeAddress] = data
+                    }).catch(err => {
+                        console.error(err)
+                        daiBalanceMap[bridgeAddress] = BigInt(0)
+                    })
+                )
+                promises.push(
+                    readContract(client, {
+                        abi: SDAI_ABI,
+                        address: MKR_ADDRESS,
+                        functionName: "balanceOf",
+                        args: [bridgeAddress]
+                    }).then(data => {
+                        mkrBalanceMap[bridgeAddress] = data
+                    }).catch(err => {
+                        console.error(err)
+                        mkrBalanceMap[bridgeAddress] = BigInt(0)
                     })
                 )
             }
@@ -43,11 +75,15 @@ export default function useChainData() {
         Promise.allSettled(promises).then(() => {
             let data: ChainData[] = []
             for (let chain of chains) {
-                let total = BigInt(0)
+                let sdaiTotal = BigInt(0)
+                let daiTotal = BigInt(0)
+                let mkrTotal = BigInt(0)
                 for (let bridgeAddress of bridges[chain]) {
-                    total += balanceMap[bridgeAddress]
+                    sdaiTotal += sdaiBalanceMap[bridgeAddress]
+                    daiTotal += daiBalanceMap[bridgeAddress]
+                    mkrTotal += mkrBalanceMap[bridgeAddress]
                 }
-                data.push({name: chain, sdai: total})
+                data.push({name: chain, sdai: sdaiTotal, dai: daiTotal, mkr: mkrTotal})
             }
             setChainData(data)
         })

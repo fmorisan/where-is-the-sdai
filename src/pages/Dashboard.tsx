@@ -1,21 +1,31 @@
 import { ChainCard } from "@/components/chain-card";
 import { ChainCardWithData } from "@/components/chain-card-with-data";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { chains } from "@/config/chains";
-import useChainData from "@/hooks/chainData";
+import useChainData, { ChainData } from "@/hooks/chainData";
 import { useEffect, useState } from "react";
 
 
 export default function Dashboard() {
     const {chainData} = useChainData()
+    const [ordering, setOrdering] = useState<Exclude<keyof ChainData, "name">>('sdai')
 
     return (
         <>
             <PageHeader>
                 <PageHeaderHeading>Overview</PageHeaderHeading>
             </PageHeader>
-            {chainData.sort((a, b) => (a.sdai - b.sdai) > 0? -1: 1).map(data => <ChainCardWithData chainData={data} key={data.name} />)}
+            <Card className="mb-4">
+                <CardHeader><CardTitle>Order by</CardTitle></CardHeader>
+                <CardContent>
+                    <Button className="mx-1" onClick={() => setOrdering('sdai')}>sDAI</Button>
+                    <Button className="mx-1" onClick={() => setOrdering('dai')}>DAI</Button>
+                    <Button className="mx-1" onClick={() => setOrdering('mkr')}>MKR</Button>
+                </CardContent>
+            </Card>
+            {chainData.sort((a, b) => (a[ordering] - b[ordering]) > 0? -1: 1).map(data => <ChainCardWithData chainData={data} key={data.name} />)}
             {/*chains.map((chain) => <ChainCard chain={chain} key={chain} />)*/}
         </>
     )
