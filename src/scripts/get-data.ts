@@ -14,7 +14,7 @@ const MKR_ADDRESS: `0x${string}` = "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2"
 
 const client = createPublicClient({
     chain: mainnet,
-    transport: http()
+    transport: http(process.env.ALCHEMY_URL)
 })
 
 const bridgeSet = [... new Set(Object.values(bridges).flat())]

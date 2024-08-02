@@ -30,6 +30,8 @@ jobs:
         run: npm i
 
       - name: Get data
+        env:
+          ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
         run: npm run get-data
 
       - name: commit to main
