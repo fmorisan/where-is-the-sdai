@@ -23,7 +23,7 @@ export default function Dashboard() {
                     <Button className="mx-1" onClick={() => setOrdering('dai')}>DAI</Button>
                 </CardContent>
             </Card>
-            {chainData.sort((a, b) => (a[ordering] - b[ordering]) > 0? -1: 1).map(data => <ChainCardWithData chainData={data} key={data.name} />)}
+            {chainData.sort((a, b) => (a[ordering] - b[ordering]) > 0? -1: 1).map(data => <ChainCardWithData chainData={data} key={data.name} ordering={ordering} />)}
         </>
     )
 }
