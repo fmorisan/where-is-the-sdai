@@ -35,9 +35,6 @@ jobs:
       - name: Run npm build
         run: npm run build
 
-      - name: Copy historical data to dist
-        run: cp -r historical dist
-
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -66,11 +66,11 @@ Promise.all([
         })
     })
 )]).then(() => {
-    fs.writeFileSync(`historical/${time.toString()}.json`, JSON.stringify({
+    fs.writeFileSync(`public/historical/${time.toString()}.json`, JSON.stringify({
         sdai: sdaiMapping,
         dai: daiMapping,
         mkr: mkrMapping
     }))
-    fs.writeFileSync(`historical/latest.txt`, time.toString())
-    fs.appendFileSync(`historical/times.txt`, `${time.toString()}\n`)
+    fs.writeFileSync(`public/historical/latest.txt`, time.toString())
+    fs.appendFileSync(`public/historical/times.txt`, `${time.toString()}\n`)
 })
