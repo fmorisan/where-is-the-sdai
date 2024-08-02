@@ -4,13 +4,16 @@ import { useReadContracts } from "wagmi";
 import { formatEther, parseAbi, parseEther } from "viem";
 import { ChainData } from "@/hooks/chainData";
 import useHistoricalForChain, { Direction } from "@/hooks/historicalForChain";
-import { Line, LineChart } from "recharts";
+import { Line, LineChart, YAxis } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 
 interface ChainCardProps {
     chainData: ChainData,
     ordering: ("dai" | "sdai" | "mkr")
 }
+
+const UP_COLOR = "#00ff00"
+const DOWN_COLOR = "#ff0000"
 
 export function ChainCardWithData(props: ChainCardProps) {
     let title: string = props.chainData.name
@@ -33,7 +36,8 @@ export function ChainCardWithData(props: ChainCardProps) {
         </TableCell>
         <TableCell>
             <LineChart width={100} height={30} data={sdaiData.map(d => ({amt: Number(formatEther(d))}))}>
-                <Line type="monotone" dataKey="amt" dot={false} stroke={sdaiDirection == Direction.UP? "#00ff00": "#ff0000"} />
+                <YAxis hide domain={['dataMin', 'dataMax']} />
+                <Line type="monotone" dataKey="amt" dot={false} stroke={sdaiDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
             </LineChart>
         </TableCell>
     </TableRow>
@@ -45,7 +49,8 @@ export function ChainCardWithData(props: ChainCardProps) {
         </TableCell>
         <TableCell>
             <LineChart width={100} height={30} data={daiData.map(d => ({amt: Number(formatEther(d))}))}>
-                <Line type="monotone" dataKey="amt" dot={false} stroke={daiDirection == Direction.UP? "#00ff00": "#ff0000"} />
+                <YAxis hide domain={['dataMin', 'dataMax']} />
+                <Line type="monotone" dataKey="amt" dot={false} stroke={daiDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
             </LineChart>
         </TableCell>
     </TableRow>
@@ -57,7 +62,8 @@ export function ChainCardWithData(props: ChainCardProps) {
         </TableCell>
         <TableCell>
             <LineChart width={100} height={30} data={mkrData.map(d => ({amt: Number(formatEther(d))}))}>
-                <Line type="monotone" dataKey="amt" dot={false} stroke={mkrDirection == Direction.UP? "#00ff00": "#ff0000"} />
+                <YAxis hide type="number" domain={['dataMin', 'dataMax']} />
+                <Line type="monotone" dataKey="amt" dot={false} stroke={mkrDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
             </LineChart>
         </TableCell>
     </TableRow>
