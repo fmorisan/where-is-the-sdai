@@ -1,18 +1,14 @@
-import { ChainCard } from "@/components/chain-card";
 import { ChainCardWithData } from "@/components/chain-card-with-data";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { chains } from "@/config/chains";
 import useChainData, { ChainData } from "@/hooks/chainData";
-import useHistoricalData from "@/hooks/historicalData";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 export default function Dashboard() {
     const {chainData} = useChainData()
     const [ordering, setOrdering] = useState<Exclude<keyof ChainData, "name">>('sdai')
-    const {datapointsAsString: datapoints, isLoading} = useHistoricalData({dataPointCount: 15})
 
     return (
         <>

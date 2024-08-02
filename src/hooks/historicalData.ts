@@ -23,6 +23,7 @@ function useTimes() {
         fetch("./historical/times.txt").then(async req => {
             if (req.status !== 200) {
                 setIsError(true)
+                setIsLoading(false)
                 return
             }
             let text = await req.text()
@@ -44,7 +45,7 @@ export default function useHistoricalData() {
     const [datapoints, setDatapoints] = useState<{time: number, data: HistoricalData}[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
-    const { times, isError: timesIsError } = useTimes()
+    const { times, isLoading: timesIsLoading, isError: timesIsError } = useTimes()
 
 
     useEffect(() => {
@@ -106,7 +107,7 @@ export default function useHistoricalData() {
             console.error(err)
         })
 
-    }, [times])
+    }, [timesIsLoading])
 
     return {
         datapoints,
