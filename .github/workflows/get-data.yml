@@ -38,5 +38,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "automatic commit with token data"
-          file_pattern: 'historical/*'
+          file_pattern: 'public/historical/*'
           skip_checkout: true
