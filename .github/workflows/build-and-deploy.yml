@@ -3,6 +3,10 @@ name: Build & Deploy
 on:
   push:
     branches: ["main"]
+  workflow_run:
+    workflows: [Get token data]
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -31,8 +35,8 @@ jobs:
       - name: Run npm build
         run: npm run build
 
-      - name: Get data
-        run: npm run get-data
+      - name: Copy historical data to dist
+        run: cp -r historical dist
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
