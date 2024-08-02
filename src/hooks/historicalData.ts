@@ -43,7 +43,6 @@ export default function useHistoricalData({dataPointCount}: {dataPointCount: num
                             dai: Object.entries(dp.data.dai)
                              .reduce(
                                  (acc, [k, v]: [`0x${string}`, string]) => {
-                                     console.log('k', k, 'v', v)
                                      return {
                                          ...acc, [k]: (BigInt(v) || BigInt(0))
                                      }
@@ -53,7 +52,6 @@ export default function useHistoricalData({dataPointCount}: {dataPointCount: num
                             sdai: Object.entries(dp.data.sdai)
                              .reduce(
                                  (acc, [k, v]: [`0x${string}`, string]) => {
-                                     console.log('k', k, 'v', v)
                                      return {
                                          ...acc, [k]: (BigInt(v) || BigInt(0))
                                      }
@@ -62,7 +60,6 @@ export default function useHistoricalData({dataPointCount}: {dataPointCount: num
                             mkr: Object.entries(dp.data.mkr)
                              .reduce(
                                  (acc, [k, v]: [`0x${string}`, string]) => {
-                                     console.log('k', k, 'v', v)
                                      return {
                                          ...acc, [k]: (BigInt(v) || BigInt(0))
                                      }

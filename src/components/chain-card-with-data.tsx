@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { useReadContracts } from "wagmi";
 import { parseAbi } from "viem";
 import { ChainData } from "@/hooks/chainData";
+import useHistoricalForChain, { Direction } from "@/hooks/historicalForChain";
 
 interface ChainCardProps {
     chainData: ChainData
@@ -11,6 +12,8 @@ interface ChainCardProps {
 export function ChainCardWithData(props: ChainCardProps) {
     let title: string = props.chainData.name
     const bridgeAddresses = bridges[props.chainData.name]
+    let {direction: sdaiDirection} = useHistoricalForChain({chain: props.chainData.name, token: "sdai"})
+    let {direction: daiDirection} = useHistoricalForChain({chain: props.chainData.name, token: "dai"})
 
 
     if (bridgeAddresses.length === 0) {
@@ -28,10 +31,10 @@ export function ChainCardWithData(props: ChainCardProps) {
         <CardContent>
             <ul>
                 <li>
-                    {formatter.format(Number(props.chainData.sdai / BigInt(1e16)) / 100 )} sDAI
+                    {formatter.format(Number(props.chainData.sdai / BigInt(1e16)) / 100 )} sDAI {sdaiDirection == Direction.SAME? "⛔": sdaiDirection == Direction.UP? "": "󰁅"}
                 </li>
                 <li>
-                    {formatter.format(Number(props.chainData.dai / BigInt(1e16)) / 100 )} DAI
+                    {formatter.format(Number(props.chainData.dai / BigInt(1e16)) / 100 )} DAI {daiDirection == Direction.SAME? "⛔": daiDirection == Direction.UP? "": "󰁅"}
                 </li>
             </ul>
         </CardContent>
