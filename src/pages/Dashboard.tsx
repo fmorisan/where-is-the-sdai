@@ -1,3 +1,4 @@
+import { ChainCardWithGraph } from "@/components/chain-card-graph";
 import { ChainCardWithData } from "@/components/chain-card-with-data";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
 import { Button } from "@/components/ui/button";

@@ -54,7 +54,7 @@ export const bridges: Record<typeof chains[number], `0x${string}`[]> = {
     "polygon-pos": ["0x40ec5b33f54e0e8a33a975908c5ba1c14e5bbbdf", "0xa0c68c638235ee32657e8f720a23cec1bfc77c77"],
     "blast": [],
     "mantle": [],
-    "zksync-era": ["0x051F1D88f0aF5763fB888eC4378b4D8B29ea3319"],
+    "zksync-era": ["0xD7f9f54194C633F36CCD5F3da84ad4a1c38cB2cB", "0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063"],
     "linea": ["0x051F1D88f0aF5763fB888eC4378b4D8B29ea3319"],
     "scroll": ["0xD8A791fE2bE73eb6E6cF1eb0cb3F36adC9B3F8f9"],
     "starknet": ["0x0437465dfb5B79726e35F08559B0cBea55bb585C", "0x9F96fE0633eE838D0298E8b8980E6716bE81388d"],
