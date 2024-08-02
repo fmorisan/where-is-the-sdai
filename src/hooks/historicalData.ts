@@ -14,22 +14,48 @@ interface HistoricalData {
     mkr: BridgesData<bigint>
 }
 
-export default function useHistoricalData({dataPointCount}: {dataPointCount: number}) {
+function useTimes() {
+    const [times, setTimes] = useState<string[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
+
+    useEffect(() => {
+        fetch("./historical/times.txt").then(async req => {
+            if (req.status !== 200) {
+                setIsError(true)
+                return
+            }
+            let text = await req.text()
+            setTimes(text.split('\n').slice(0, -1))
+            setIsLoading(false)
+        })
+    }, [])
+
+    return {
+        times,
+        isLoading,
+        isError
+    }
+}
+
+
+export default function useHistoricalData() {
     const [datapointsAsString, setDatapointsAsString] = useState<{time: number, data: HistoricalDataFromFile}[]>([])
     const [datapoints, setDatapoints] = useState<{time: number, data: HistoricalData}[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
+    const { times, isError: timesIsError } = useTimes()
+
 
     useEffect(() => {
-        fetch("/historical/times.txt").then(async times => {
-           const text = await times.text()
-           console.log("times text:", text)
-           return Promise.all(
-               text.split('\n').slice(-dataPointCount, -1)
-                .map(async time => ({
-                    time,
-                    data: await(await fetch(`/historical/${time}.json`)).json() as HistoricalDataFromFile
-                })))
-        }).then(datapoints => {
+        if (timesIsError) {
+            return
+        }
+
+        Promise.all(times.map(async time => ({
+            time,
+            data: await (await fetch(`./historical/${time}.json`)).json() as HistoricalDataFromFile
+        }))).then(datapoints => {
             setDatapointsAsString(
                 datapoints.map(dp => ({
                     time: parseInt(dp.time), data: dp.data
@@ -75,13 +101,17 @@ export default function useHistoricalData({dataPointCount}: {dataPointCount: num
             )
 
             setIsLoading(false)
+        }).catch(err => {
+            setIsError(true)
+            console.error(err)
         })
 
-    }, [])
+    }, [times])
 
     return {
         datapoints,
         datapointsAsString,
-        isLoading
+        isLoading,
+        isError
     }
 }

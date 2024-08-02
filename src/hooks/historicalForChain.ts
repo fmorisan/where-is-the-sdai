@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import useHistoricalData from "./historicalData";
+import { HistoricalDataProviderContext } from "@/contexts/HistoricalDataContext";
 
 interface props {
     chain: string,
@@ -16,7 +18,7 @@ function entries<T>(obj: T) {
 }
 
 export default function useHistoricalForChain(props: props) {
-    const {isLoading, datapoints} = useHistoricalData({dataPointCount: 2})
+    const {datapoints} = useContext(HistoricalDataProviderContext)
     const chainBridges = props.chain
 
     const data = datapoints.map(
@@ -33,13 +35,11 @@ export default function useHistoricalForChain(props: props) {
 
     let direction = Direction.SAME
 
-    if (!isLoading) {
-        if (data[1] > data[0]) {
-            direction = Direction.UP
-        } else if (data[0] > data[1]) {
-            direction = Direction.DOWN
-        }
+    if (data[-1] > data[-2]) {
+        direction = Direction.UP
+    } else if (data[-2] > data[-1]) {
+        direction = Direction.DOWN
     }
 
-    return {isLoading, data, direction}
+    return {data, direction}
 }
