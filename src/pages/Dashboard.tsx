@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { chains } from "@/config/chains";
 import useChainData, { ChainData } from "@/hooks/chainData";
+import useHistoricalData from "@/hooks/historicalData";
 import { useEffect, useState } from "react";
 
 
 export default function Dashboard() {
     const {chainData} = useChainData()
     const [ordering, setOrdering] = useState<Exclude<keyof ChainData, "name">>('sdai')
+    const {datapointsAsString: datapoints, isLoading} = useHistoricalData({dataPointCount: 15})
 
     return (
         <>
@@ -25,7 +27,7 @@ export default function Dashboard() {
                 </CardContent>
             </Card>
             {chainData.sort((a, b) => (a[ordering] - b[ordering]) > 0? -1: 1).map(data => <ChainCardWithData chainData={data} key={data.name} />)}
-            {/*chains.map((chain) => <ChainCard chain={chain} key={chain} />)*/}
+            {!isLoading && <pre>{JSON.stringify(datapoints[0])}</pre>}
         </>
     )
 }
