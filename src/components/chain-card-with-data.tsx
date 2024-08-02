@@ -4,7 +4,7 @@ import { useReadContracts } from "wagmi";
 import { formatEther, parseAbi, parseEther } from "viem";
 import { ChainData } from "@/hooks/chainData";
 import useHistoricalForChain, { Direction } from "@/hooks/historicalForChain";
-import { Line, LineChart, YAxis } from "recharts";
+import { Line, LineChart, Tooltip, YAxis } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 
 interface ChainCardProps {

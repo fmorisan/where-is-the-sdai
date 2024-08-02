@@ -20,6 +20,7 @@ const MKR_ADDRESS: `0x${string}` = "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2"
 
 export default function useChainData() {
     const [chainData, setChainData] = useState<ChainData[]>([])
+    const [isLoading, setIsLoading] = useState(true);
     const client = useClient()
 
     useEffect(() => {
@@ -86,10 +87,12 @@ export default function useChainData() {
                 data.push({name: chain, sdai: sdaiTotal, dai: daiTotal, mkr: mkrTotal})
             }
             setChainData(data)
+            setIsLoading(false)
         })
     }, [])
 
     return {
-        chainData
+        chainData,
+        isLoading
     }
 }
