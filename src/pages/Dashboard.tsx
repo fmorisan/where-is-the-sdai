@@ -27,7 +27,6 @@ export default function Dashboard() {
                 </CardContent>
             </Card>
             {chainData.sort((a, b) => (a[ordering] - b[ordering]) > 0? -1: 1).map(data => <ChainCardWithData chainData={data} key={data.name} />)}
-            {!isLoading && <pre>{JSON.stringify(datapoints[0])}</pre>}
         </>
     )
 }
