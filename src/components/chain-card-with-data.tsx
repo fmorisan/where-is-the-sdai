@@ -37,7 +37,7 @@ export function ChainCardWithData(props: ChainCardProps) {
         <TableCell>
             <LineChart width={100} height={30} data={sdaiData.map(d => ({amt: Number(formatEther(d))}))}>
                 <YAxis hide domain={['dataMin', 'dataMax']} />
-                <Line type="monotone" dataKey="amt" dot={false} stroke={sdaiDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
+                <Line type="bump" dataKey="amt" dot={false} stroke={sdaiDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
             </LineChart>
         </TableCell>
     </TableRow>
@@ -50,7 +50,7 @@ export function ChainCardWithData(props: ChainCardProps) {
         <TableCell>
             <LineChart width={100} height={30} data={daiData.map(d => ({amt: Number(formatEther(d))}))}>
                 <YAxis hide domain={['dataMin', 'dataMax']} />
-                <Line type="monotone" dataKey="amt" dot={false} stroke={daiDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
+                <Line type="bump" dataKey="amt" dot={false} stroke={daiDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
             </LineChart>
         </TableCell>
     </TableRow>
@@ -63,7 +63,7 @@ export function ChainCardWithData(props: ChainCardProps) {
         <TableCell>
             <LineChart width={100} height={30} data={mkrData.map(d => ({amt: Number(formatEther(d))}))}>
                 <YAxis hide type="number" domain={['dataMin', 'dataMax']} />
-                <Line type="monotone" dataKey="amt" dot={false} stroke={mkrDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
+                <Line type="bump" dataKey="amt" dot={false} stroke={mkrDirection == Direction.UP? UP_COLOR: DOWN_COLOR} />
             </LineChart>
         </TableCell>
     </TableRow>
