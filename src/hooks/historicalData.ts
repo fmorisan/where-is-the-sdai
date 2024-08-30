@@ -53,7 +53,8 @@ export default function useHistoricalData() {
             return
         }
 
-        Promise.all(times.map(async time => ({
+        // NOTE: crop the historical data to avoid loading hundreds of JSON files haha
+        Promise.all(times.slice(-40).map(async time => ({
             time,
             data: await (await fetch(`./historical/${time}.json`)).json() as HistoricalDataFromFile
         }))).then(datapoints => {
